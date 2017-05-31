@@ -83,6 +83,7 @@ bool Caches::init() {
 }
 
 void Caches::initExtensions() {
+    #ifndef MTK_HARDWARE
     if (mExtensions.hasDebugMarker()) {
         eventMark = glInsertEventMarkerEXT;
 
@@ -93,6 +94,11 @@ void Caches::initExtensions() {
         startMark = startMarkNull;
         endMark = endMarkNull;
     }
+    #else
+          eventMark = eventMarkNull;
+          startMark = startMarkNull;
+          endMark = endMarkNull;
+    #endif
 }
 
 void Caches::initConstraints() {
